@@ -662,8 +662,18 @@
     
     <section id="quickstart">
       <h2>Quick Start</h2>
-      <p>Create <code>NOPE.md</code> in your agent's workspace root:</p>
+
+      <h3 style="color: var(--accent); margin-bottom: 8px;">Option 1: Interactive Wizard (Recommended)</h3>
+      <p>The wizard walks you through every security decision with smart presets for common agent types:</p>
       <div class="code-container">
+        <button class="copy-btn" onclick="copyNpx(this)">Copy</button>
+        <pre id="npx-command">npx nope-md init</pre>
+      </div>
+      <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.9rem;">Choose a preset (Dev Assistant, Monitor, Research, or Custom), review every boundary, and get a tailored NOPE.md. Every question forces you to think about your agent's attack surface.</p>
+
+      <h3 style="color: var(--text-muted); margin-top: 40px; margin-bottom: 8px;">Option 2: Manual</h3>
+      <p>Or create <code>NOPE.md</code> manually in your agent's workspace root:</p>
+      <div class="code-container" style="margin-top: 12px;">
         <button class="copy-btn" onclick="copyTemplate(this)">Copy</button>
         <pre id="template"># NOPE.md
 
@@ -683,7 +693,7 @@ These are forbidden. No exceptions.
 What the agent (and any attacker who hijacks it) CAN do:
 
 - Read: workspace files only
-- Write: ~/agent/output/ only  
+- Write: ~/agent/output/ only
 - Message: owner Telegram only (ID: xxxxxxxxx)
 - Commands: cat, ls, echo, date, head, tail
 
@@ -748,6 +758,16 @@ What the agent (and any attacker who hijacks it) CAN do:
   </div>
   
   <script>
+    function copyNpx(btn) {
+      navigator.clipboard.writeText('npx nope-md init').then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
     function copyTemplate(btn) {
       const template = document.getElementById('template').textContent;
       navigator.clipboard.writeText(template).then(() => {
