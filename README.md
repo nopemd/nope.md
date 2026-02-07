@@ -1,6 +1,6 @@
 # 🚫 NOPE.md
 
-**Define what an attacker can't do — even if they hijack your AI agent.**
+**Define what your agent can't do. Because if it gets compromised, those limits are all you've got.**
 
 NOPE.md is a simple, open standard for AI agent security boundaries. It flips the usual question from *"what can my agent do?"* to *"what can an attacker do if they hijack my agent?"*
 
