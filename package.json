@@ -1,0 +1,30 @@
+{
+  "name": "nope-md",
+  "version": "0.1.0",
+  "description": "Define what your AI agent can't do. Security boundaries for AI agents.",
+  "bin": {
+    "nope-md": "./cli/index.js"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "security",
+    "prompt-injection",
+    "nope",
+    "boundaries",
+    "ai-safety"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nopemd/nope.md.git"
+  },
+  "homepage": "https://nope-md.vercel.app",
+  "license": "CC0-1.0",
+  "author": "Jordan Lyall",
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

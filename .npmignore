@@ -1,0 +1,9 @@
+docs/
+examples/
+templates/
+.git/
+.github/
+*.html
+og-image.*
+SPEC.md
+CONTRIBUTING.md

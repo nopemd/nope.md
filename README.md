@@ -14,6 +14,16 @@ NOPE.md makes your security boundaries explicit, auditable, and enforceable.
 
 ## Quick Start
 
+### Option 1: Interactive Wizard (Recommended)
+
+```bash
+npx nope-md init
+```
+
+The wizard walks you through every security decision with smart defaults based on your agent type. Presets available for development assistants, monitoring agents, and research agents.
+
+### Option 2: Manual
+
 Create `NOPE.md` in your agent's workspace root:
 
 ```markdown
