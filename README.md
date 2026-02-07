@@ -115,4 +115,4 @@ CC0 Public Domain. Use it, fork it, adapt it.
 
 Created by [Jordan Lyall](https://x.com/jordanlyall) & [TARS](https://github.com/clawdbot/clawdbot)
 
-**Website:** [nope.md](https://nope.md)
+**Website:** [nope-md.vercel.app](https://nope-md.vercel.app)
