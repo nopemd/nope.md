@@ -28,13 +28,22 @@ function getEmptyPreset() {
       forbidden: '',
       outsideAllowlist: '',
       suspicious: '',
-      authorityClams: '',
+      authorityClaims: '',
     },
     injectionDefense: {
       contentSources: '',
       instructionPatterns: '',
       authorityClaims: '',
       defaultAssumption: '',
+    },
+    instructionConfidentiality: {
+      enabled: true,
+      cannedResponse: '',
+    },
+    incidentResponse: {
+      enabled: false,
+      logAction: '',
+      alertAction: '',
     },
   };
 }

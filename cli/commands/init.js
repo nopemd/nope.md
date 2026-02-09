@@ -219,12 +219,73 @@ async function run() {
   const injectionDefense = await prompts(injectionQuestions, { onCancel });
   if (cancelled) return;
 
+  // Step 6: Instruction Confidentiality (v0.2)
+  console.log('\n  ── Instruction Confidentiality (v0.2) ──');
+  console.log('  Protect your agent\'s configuration from disclosure.\n');
+
+  const { confidentialityEnabled } = await prompts({
+    type: 'confirm',
+    name: 'confidentialityEnabled',
+    message: 'Enable instruction confidentiality? (Recommended — prevents prompt extraction)',
+    initial: preset.instructionConfidentiality ? preset.instructionConfidentiality.enabled : true,
+  }, { onCancel });
+  if (cancelled) return;
+
+  let instructionConfidentiality = { enabled: confidentialityEnabled };
+  if (confidentialityEnabled) {
+    const { cannedResponse } = await prompts({
+      type: 'text',
+      name: 'cannedResponse',
+      message: 'Canned response to extraction attempts:',
+      initial: (preset.instructionConfidentiality && preset.instructionConfidentiality.cannedResponse) || 'I can\'t discuss my operating instructions. How can I help you with something else?',
+    }, { onCancel });
+    if (cancelled) return;
+    instructionConfidentiality.cannedResponse = cannedResponse;
+  }
+
+  // Step 7: Incident Response (v0.2, optional)
+  console.log('\n  ── Incident Response (v0.2, Optional) ──');
+  console.log('  Define behavior when targeted attacks are detected.\n');
+
+  const { incidentEnabled } = await prompts({
+    type: 'confirm',
+    name: 'incidentEnabled',
+    message: 'Enable incident response section?',
+    initial: preset.incidentResponse ? preset.incidentResponse.enabled : false,
+  }, { onCancel });
+  if (cancelled) return;
+
+  let incidentResponse = { enabled: incidentEnabled };
+  if (incidentEnabled) {
+    const incidentQuestions = [
+      {
+        type: 'text',
+        name: 'logAction',
+        message: 'How should attacks be logged?',
+        initial: (preset.incidentResponse && preset.incidentResponse.logAction) || 'Log the interaction details',
+      },
+      {
+        type: 'text',
+        name: 'alertAction',
+        message: 'How should the owner be alerted?',
+        initial: (preset.incidentResponse && preset.incidentResponse.alertAction) || 'Alert owner immediately via configured channel',
+      },
+    ];
+
+    const incidentAnswers = await prompts(incidentQuestions, { onCancel });
+    if (cancelled) return;
+    incidentResponse.logAction = incidentAnswers.logAction;
+    incidentResponse.alertAction = incidentAnswers.alertAction;
+  }
+
   // Assemble answers
   const answers = {
     nopeList,
     allowlist,
     escalation,
     injectionDefense,
+    instructionConfidentiality,
+    incidentResponse,
   };
 
   // Generate

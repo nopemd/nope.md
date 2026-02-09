@@ -1,6 +1,6 @@
 {
   "name": "nope-md",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Define what your AI agent can't do. Security boundaries for AI agents.",
   "bin": {
     "nope-md": "./cli/index.js"
